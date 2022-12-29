@@ -4,6 +4,10 @@
  */
 package view;
 
+import controller.*;
+
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Hp
@@ -16,6 +20,7 @@ public class Login extends javax.swing.JFrame {
         public Login() {
                 this.setTitle("Login");
                 this.setResizable(false);
+                db = new database();
                 initComponents();
         }
 
@@ -209,8 +214,14 @@ public class Login extends javax.swing.JFrame {
 
         private void loginActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_loginActionPerformed
                 // TODO add your handling code here:
-                this.dispose();
-                new Home().setVisible(true);
+                String username = uname.getText();
+                String psswd = password.getText();
+                if (db.login(username, psswd)) {
+                        this.dispose();
+                        new Home().setVisible(true);
+                } else {
+                        JOptionPane.showMessageDialog(null, "Password is not correct");
+                }
         }// GEN-LAST:event_loginActionPerformed
 
         private void RegisterActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_RegisterActionPerformed
@@ -230,5 +241,6 @@ public class Login extends javax.swing.JFrame {
         private javax.swing.JButton login;
         private javax.swing.JTextField password;
         private javax.swing.JTextField uname;
+        private database db;
         // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.*;
 /**
  *
  * @author Hp
@@ -16,6 +17,7 @@ public class Home extends javax.swing.JFrame {
     public Home() {
         this.setTitle("Home");
         this.setResizable(false);
+        db = new database();
         initComponents();
     }
 
@@ -131,13 +133,12 @@ public class Home extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("The different cathegories you can chose from");
-
+        String[] categories = db.getcategories();
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][] {
-                        { null },
-                        { null },
-                        { null },
-                        { null }
+                        { categories[0] },
+                        { categories[1] },
+                        { categories[2] }
                 },
                 new String[] {
                         "Categories"
@@ -207,7 +208,8 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        new Login().setVisible(true);
     }// GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -225,5 +227,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private database db;
     // End of variables declaration//GEN-END:variables
 }

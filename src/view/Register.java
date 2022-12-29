@@ -4,6 +4,8 @@
  */
 package view;
 
+import controller.*;
+
 /**
  *
  * @author Hp
@@ -16,6 +18,7 @@ public class Register extends javax.swing.JFrame {
     public Register() {
         this.setTitle("Register");
         this.setResizable(false);
+        db = new database();
         initComponents();
     }
 
@@ -96,6 +99,12 @@ public class Register extends javax.swing.JFrame {
         jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordField2ActionPerformed(evt);
+            }
+        });
+
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -226,6 +235,20 @@ public class Register extends javax.swing.JFrame {
         // TODO add your handling code here:
     }// GEN-LAST:event_jPasswordField2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jPasswordField2ActionPerformed
+        // TODO add your handling code here:
+        String fname = jTextField10.getText();
+        String username = jTextField6.getText();
+        String lname = jTextField11.getText();
+        String email = jTextField9.getText();
+        String password = jPasswordField1.getText();
+        String Cpassword = jPasswordField2.getText();
+        if (db.register(fname, username, lname, email, password,Cpassword)) {
+            this.dispose();
+            new Home().setVisible(true);
+        }
+    }//
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -245,5 +268,6 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField9;
+    private database db;
     // End of variables declaration//GEN-END:variables
 }
